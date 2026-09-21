@@ -6,6 +6,13 @@ pipeline {
         maven 'maven3.6'
     }
     stages {
+        stage("init") {
+            steps {
+                script {
+                    gv = load "script.groovy"
+                }
+            }
+        }
         stage("build jar") {
             steps {
                 script {
