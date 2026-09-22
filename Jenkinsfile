@@ -23,17 +23,19 @@ pipeline {
                 }
             }
         }
-        stage("build image") {
+        stage("build and push image") {
             steps {
                 script {
-                    buildImage'yanadidun/demo-app:jma-5.0'
+                    buildImage'yanadidun/demo-app:jma-6.0'
+                    dockerLogin()
+                    dockerPush 'yanadidun/demo-app:jma-6.0'
                 }
             }
         }
         stage("deploy") {
             steps {
                 script {
-                    echo "deploying"
+                    gv.deployApp()
                 }
             }
         }
