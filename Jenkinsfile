@@ -1,52 +1,50 @@
-def gv
+#!/usr/bin/env groovy
+
+library identifier: 'jenkins-shared-library@lesson-100', retriever: modernSCM(
+    [$class: 'GitSCMSource',
+    remote: 'https://github.com/yanaddn/jenkins-shared-library.git',
+    credentialsId: 'github-creds'
+    ]
+)
 
 pipeline {
     agent any
-    parameters {
-        choice(name: 'VERSION', choices: ['1.1.0', '1.2.0', '1.3.0'], description: '')
-        booleanParam(name: 'executeTests', defaultValue: true, description: '')
+    tools {
+        maven 'maven3.6'
     }
+    environment {
+        IMAGE_NAME = 'yanadidun/demo-app:java-maven-1.0'
+    } 
     stages {
-        stage("init") {
+        stage('build app') {
             steps {
                 script {
-                   gv = load "script.groovy"
+                    echo 'building app jar...'
+                    buildJar()
                 }
             }
         }
-        stage("build") {
+        stage('build and push image') {
             steps {
                 script {
-                    gv.buildApp()
+                    echo 'building docker image...'
+                    buildImage(env.IMAGE_NAME)
+                    dockerLogin()
+                    dockerPush(env.IMAGE_NAME)
                 }
             }
         }
-        stage("test") {
-            when {
-                expression {
-                    params.executeTests
-                }
-            }
+        stage('deploy') {
             steps {
                 script {
-                    gv.testApp()
+                    echo 'deploying docker image to EC2...'
+                    def dockerComposeCmd = "docker compose -f docker-compose.yaml up --detach"
+                    sshagent(['ec2-server-key']) {
+                        sh "scp -o StrictHostKeyChecking=no docker-compose.yaml ec2-user@13.48.42.243:/home/ec2-user"
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@13.48.42.243 ${dockerComposeCmd}"
+                    }
                 }
             }
         }
-        stage("deploy") {
-            input {
-                message "Select the environment to deploy to"
-                ok "Done"
-                parameters {
-                    choice(name: 'VERSION', choices: ['1.1.0', '1.2.0', '1.3.0'], description: '')
-                }
-            }
-            steps {
-                script {
-                    gv.deployApp()
-                    echo "Deploying ${VERSION} version"
-                }
-            }
-        }
-    }
+    }   
 }
