@@ -23,6 +23,9 @@ pipeline {
                     def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
                     def version = matcher[0][1]
                     env.IMAGE_NAME = "$version-$BUILD_NUMBER"
+                }
+            }
+        }
         stage('build app') {
             steps {
                 script {
@@ -45,7 +48,7 @@ pipeline {
             steps {
                 script {
                     echo 'deploying docker image to EC2...'
-                    def shellCmd = "bash ./server-cmds.sh ${IMAGE_NAME}"
+                    def shellCmd = "bash ./server-cmds.sh ${env.IMAGE_NAME}"
                     def ec2Instance = "ec2-user@13.48.42.243"
                     
                     sshagent(['ec2-server-key']) {
@@ -55,6 +58,7 @@ pipeline {
                     }
                 }
             }
+        }
         stage('commit version update') {
             steps {
                 script {
@@ -63,7 +67,7 @@ pipeline {
                         sh 'git config --global user.email "jenkins@example.com"'
                         sh 'git config --global user.name "jenkins"'
 
-                        sh "git remote set-url origin https://${USER}:${PASS}@github.com/yanaddn/java-maven-app.git"
+                        sh 'git remote set-url origin https://${USER}:${PASS}@github.com/yanaddn/java-maven-app.git'
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
                         sh 'git push origin HEAD:aws-docker-compose'
