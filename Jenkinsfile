@@ -69,7 +69,7 @@ pipeline {
 
                         sh 'git remote set-url origin https://${USER}:${PASS}@github.com/yanaddn/java-maven-app.git'
                         sh 'git add .'
-                        sh 'git commit -m "ci: version bump"'
+                        sh 'git commit -m "ci: version bump [ci skip]"'
                         sh 'git push origin HEAD:aws-docker-compose'
                     }
                 }
