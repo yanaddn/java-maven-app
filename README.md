@@ -1,5 +1,5 @@
 #### Pushing Image to DockerHub Repository:
- Made Docker available in Jenkins container (mount docker runtime inside
+- [x] Made Docker available in Jenkins container (mount docker runtime inside
 container as a volume)
 - [x] Fixed permissions on docker.sock
 - [x] Configured Job to build Docker Image
