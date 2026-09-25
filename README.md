@@ -1,5 +1,5 @@
 ### Repository branches
-- [aws-docker-compose](https://github.com/yanaddn/java-maven-app/tree/aws-docker-compose) - Deploying Java Maven App via Jenkins Pipeline on EC2 Instance using Docker-Compose File
+- [aws-docker-compose](https://github.com/yanaddn/java-maven-app/tree/aws-docker-compose) - Deploying App on EC2 using Docker-Compose File
 - [app-versioning](https://github.com/yanaddn/java-maven-app/tree/app-versioning) - Incrementing version in Jenkins Pipeline
 - [aws-integration](https://github.com/yanaddn/java-maven-app/tree/aws-integration) - Deploying WebApp Container Manually on EC2 Instance
 - [jenkins-shared-lib](https://github.com/yanaddn/java-maven-app/tree/jenkins-shared-lib) - Enrolling Jenkins Shared Library
