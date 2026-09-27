@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="AppTest" time="0.003" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="AppTest" time="0.01" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="21.0.12.1+1-LTS"/>
     <property name="sun.boot.library.path" value="/opt/java/openjdk/lib"/>
-    <property name="maven.multiModuleProjectDirectory" value="/var/jenkins_home/workspace/ti-pipeline_aws-docker-compose_2"/>
+    <property name="maven.multiModuleProjectDirectory" value="/var/jenkins_home/workspace/ulti-pipeline_aws-docker-compose"/>
     <property name="java.vm.vendor" value="Eclipse Adoptium"/>
     <property name="java.vendor.url" value="https://adoptium.net/"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -12,7 +12,7 @@
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="/var/jenkins_home/workspace/ti-pipeline_aws-docker-compose_2"/>
+    <property name="user.dir" value="/var/jenkins_home/workspace/ulti-pipeline_aws-docker-compose"/>
     <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="java.runtime.version" value="21.0.12.1+1-LTS"/>
     <property name="os.arch" value="amd64"/>
@@ -31,7 +31,7 @@
     <property name="java.class.version" value="65.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="6.8.0-139-generic"/>
+    <property name="os.version" value="6.8.0-124-generic"/>
     <property name="library.jansi.path" value="/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven3.6/lib/jansi-native"/>
     <property name="user.home" value="/var/jenkins_home"/>
     <property name="user.timezone" value="Etc/UTC"/>
@@ -58,5 +58,5 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="java.vendor.version" value="Temurin-21.0.12.1+1"/>
   </properties>
-  <testcase classname="AppTest" name="testApp" time="0.003"/>
+  <testcase classname="AppTest" name="testApp" time="0.01"/>
 </testsuite>
